@@ -4,7 +4,7 @@ const App = () => {
   const startTime = useRef(0);
   const intervalRef = useRef(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [laps, setLaps] = useState(null);
+  const [laps, setLaps] = useState([]);
   const [lapSectionVisible, setlapSectionVisible] = useState(false);
   const [start, setStart] = useState()
 
@@ -35,15 +35,13 @@ const App = () => {
           <button onClick={()=>{setStart(true)}} className="start-btn">START</button>
           <button onClick={()=>{setStart(false)}} className="stop-btn">STOP</button>
           <button  onClick={handleLap} className="lap-btn">LAP</button>
-          <button onClick={()=>{setRunning(false) ,setCurrentTime(0),setlapSectionVisible(false),setLaps([])}} className="reset-btn">RESET</button>
+          <button onClick={()=>{setStart(false) ,setCurrentTime(0),setlapSectionVisible(false),setLaps([])}} className="reset-btn">RESET</button>
         </section>
       </section>
       {lapSectionVisible && <section className='lap-section'>
         <h2>Laps</h2>
         <section className='laps'>
-          <p>lap</p>
-          <p>lap</p>
-          <p>lap</p>
+          {laps.map((item)=> <p>{item.toFixed(3)}</p>)}
         </section>
       </section>}
     </div>
